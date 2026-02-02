@@ -5,9 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-
 @Getter
 @Setter
 @NoArgsConstructor
@@ -17,5 +14,5 @@ public class HotelRequestDto {
     private String hotelName;
     private String city;
     private int stars;
-    private BigDecimal pricePerNight;
+    private Double pricePerNight;
 }

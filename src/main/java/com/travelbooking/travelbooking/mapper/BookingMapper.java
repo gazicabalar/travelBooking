@@ -12,7 +12,7 @@ public class BookingMapper {
         bookingResponseDto.setHotelId(booking.getHotel().getHotelId());
         bookingResponseDto.setFlightId(booking.getFlight().getFlightId());
         bookingResponseDto.setStatus(booking.getStatus().name());
-        bookingResponseDto.setCreatedAt(booking.getCreatedAt());
+        bookingResponseDto.setTotalPrice(booking.getTotalPrice());
         return bookingResponseDto;
     }
 

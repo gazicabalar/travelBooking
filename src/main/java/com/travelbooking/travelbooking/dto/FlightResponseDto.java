@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Getter
@@ -17,6 +16,6 @@ public class FlightResponseDto {
     private String fromCity;
     private String toCity;
     private LocalDate flightDate;
-    private BigDecimal price;
+    private Double price;
 
 }

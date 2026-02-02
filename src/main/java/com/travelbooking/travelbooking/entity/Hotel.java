@@ -3,8 +3,6 @@ package com.travelbooking.travelbooking.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.math.BigDecimal;
-
 @Entity
 @Table(name = "hotels")
 @Getter
@@ -28,7 +26,7 @@ public class Hotel {
     private int stars;
 
     @Column(nullable = false)
-    private BigDecimal pricePerNight;
+    private Double pricePerNight;
 
     @Column(nullable = false)
     private int availableRooms;

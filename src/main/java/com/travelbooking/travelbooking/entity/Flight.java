@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
@@ -35,7 +34,7 @@ public class Flight {
 
     @Column(nullable = false)
     @NotBlank
-    private BigDecimal price;
+    private Double price;
 
     @Column(nullable = false)
     @NotBlank

@@ -3,10 +3,7 @@ package com.travelbooking.travelbooking.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -28,11 +25,7 @@ public class Booking {
 
     @Column(nullable = false)
     @NotBlank
-    private BigDecimal totalPrice;
-
-    @Column(nullable = false)
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime createdAt;
+    private Double totalPrice;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

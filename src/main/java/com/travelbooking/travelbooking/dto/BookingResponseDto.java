@@ -16,6 +16,7 @@ public class BookingResponseDto {
     private Long userId;
     private Long flightId;
     private Long hotelId;
+    private Double totalPrice;
     private String status;
     private LocalDateTime createdAt;
 }
