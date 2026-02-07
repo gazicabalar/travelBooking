@@ -14,6 +14,8 @@ public class FlightServiceImpl implements FlightService{
 
     private final FlightRepository flightRepository;
 
+    private static final int DEFAULT_SEAT_CAPACITY = 150;
+
     public FlightServiceImpl(FlightRepository flightRepository) {
         this.flightRepository = flightRepository;
     }
@@ -21,6 +23,7 @@ public class FlightServiceImpl implements FlightService{
     @Override
     public FlightResponseDto createFlight(FlightRequestDto flightRequestDto) {
         Flight flight = FlightMapper.toEntity(flightRequestDto);
+        flight.setAvailableSeats(DEFAULT_SEAT_CAPACITY);
         Flight savedFlight = flightRepository.save(flight);
         return FlightMapper.toDto(savedFlight);
     }

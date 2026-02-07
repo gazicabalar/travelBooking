@@ -13,6 +13,7 @@ public class HotelResponseDto {
     private Long hotelId;
     private String hotelName;
     private String city;
+    private int stars;
     private Double pricePerNight;
-
+    private int availableRooms;
 }

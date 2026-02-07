@@ -14,6 +14,8 @@ public class HotelServiceImpl implements HotelService{
 
     private final HotelRepository hotelRepository;
 
+    private static final int DEFAULT_ROOM_CAPACITY = 100;
+
     public HotelServiceImpl(HotelRepository hotelRepository) {
         this.hotelRepository = hotelRepository;
     }
@@ -21,6 +23,7 @@ public class HotelServiceImpl implements HotelService{
     @Override
     public HotelResponseDto createHotel(HotelRequestDto hotelRequestDto) {
         Hotel hotel = HotelMapper.toEntity(hotelRequestDto);
+        hotel.setAvailableRooms(DEFAULT_ROOM_CAPACITY);
         Hotel savedHotel = hotelRepository.save(hotel);
         return HotelMapper.toDto(savedHotel);
     }

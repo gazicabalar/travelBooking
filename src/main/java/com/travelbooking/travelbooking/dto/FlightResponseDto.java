@@ -17,5 +17,6 @@ public class FlightResponseDto {
     private String toCity;
     private LocalDate flightDate;
     private Double price;
+    private Integer availableSeats;
 
 }

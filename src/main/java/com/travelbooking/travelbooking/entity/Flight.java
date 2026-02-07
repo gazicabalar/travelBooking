@@ -3,6 +3,7 @@ package com.travelbooking.travelbooking.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -29,15 +30,15 @@ public class Flight {
     private String toCity;
 
     @Column(nullable = false)
-    @NotBlank
+    @NotNull(message = "Flight date cannot be blank")
     private LocalDate flightDate;
 
     @Column(nullable = false)
-    @NotBlank
+    @NotNull(message = "Price cannot be blank")
     private Double price;
 
     @Column(nullable = false)
-    @NotBlank
+    @NotNull(message = "Available seats cannot be blank")
     private int availableSeats;
 
 }

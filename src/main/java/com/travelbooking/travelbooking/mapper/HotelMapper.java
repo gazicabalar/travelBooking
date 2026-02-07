@@ -18,9 +18,13 @@ public class HotelMapper {
     public static HotelResponseDto toDto(Hotel hotel) {
         HotelResponseDto hotelResponseDto = new HotelResponseDto();
 
+        hotelResponseDto.setHotelId(hotel.getHotelId());
         hotelResponseDto.setHotelName(hotel.getHotelName());
         hotelResponseDto.setCity(hotel.getCity());
+        hotelResponseDto.setStars(hotel.getStars());
         hotelResponseDto.setPricePerNight(hotel.getPricePerNight());
+        hotelResponseDto.setAvailableRooms(hotel.getAvailableRooms());
+
         return hotelResponseDto;
     }
 

@@ -13,6 +13,7 @@ public class BookingMapper {
         bookingResponseDto.setFlightId(booking.getFlight().getFlightId());
         bookingResponseDto.setStatus(booking.getStatus().name());
         bookingResponseDto.setTotalPrice(booking.getTotalPrice());
+        bookingResponseDto.setBookingDate(booking.getBookingDate());
         return bookingResponseDto;
     }
 

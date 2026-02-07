@@ -1,8 +1,10 @@
 package com.travelbooking.travelbooking.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
@@ -20,11 +22,12 @@ public class Booking {
     private Long bookingId;
 
     @Column(nullable = false)
-    @NotBlank
+    @NotNull(message = "Booking date cannot be null")
     private LocalDateTime bookingDate;
 
     @Column(nullable = false)
-    @NotBlank
+    @NotNull
+    @Positive
     private Double totalPrice;
 
     @Enumerated(EnumType.STRING)

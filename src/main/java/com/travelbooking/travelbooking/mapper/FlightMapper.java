@@ -22,6 +22,7 @@ public class FlightMapper {
         flightResponseDto.setToCity(flight.getToCity());
         flightResponseDto.setFlightDate(flight.getFlightDate());
         flightResponseDto.setPrice(flight.getPrice());
+        flightResponseDto.setAvailableSeats(flight.getAvailableSeats());
 
         return flightResponseDto;
     }

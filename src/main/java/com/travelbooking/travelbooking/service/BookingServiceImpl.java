@@ -9,11 +9,13 @@ import com.travelbooking.travelbooking.repository.FlightRepository;
 import com.travelbooking.travelbooking.repository.HotelRepository;
 import com.travelbooking.travelbooking.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@Transactional
 public class BookingServiceImpl implements BookingService {
 
     private final BookingRepository bookingRepository;
@@ -45,7 +47,7 @@ public class BookingServiceImpl implements BookingService {
          booking.setUser(user);
          booking.setFlight(flight);
          booking.setHotel(hotel);
-         booking.setStatus(BookingStatus.CONFIRMED);
+         booking.setStatus(BookingStatus.CREATED);
          booking.setBookingDate(LocalDateTime.now());
          booking.setTotalPrice(totalPrice);
 
@@ -71,4 +73,50 @@ public class BookingServiceImpl implements BookingService {
                 .map(BookingMapper::toDto)
                 .toList();
     }
+
+    @Override
+    public BookingResponseDto confirmBooking(Long bookingId) {
+
+        Booking booking = bookingRepository.findById(bookingId)
+                .orElseThrow(() -> new RuntimeException("Booking not found"));
+
+        if (booking.getStatus() != BookingStatus.CREATED)
+            throw new RuntimeException("Only CREATED bookings can be confirmed");
+
+        Flight flight = booking.getFlight();
+
+        if (flight.getAvailableSeats() <= 0) {
+            throw new RuntimeException("No available seats for this flight");
+        }
+
+        flight.setAvailableSeats(flight.getAvailableSeats() - 1);
+        flightRepository.save(flight);
+
+        booking.setStatus(BookingStatus.CONFIRMED);
+
+        Booking updatedBooking = bookingRepository.save(booking);
+        return BookingMapper.toDto(updatedBooking);
+
+    }
+
+    @Override
+    public BookingResponseDto cancelBooking(Long bookingId) {
+        Booking booking = bookingRepository.findById(bookingId)
+                .orElseThrow(() -> new RuntimeException("Booking not found"));
+
+        if (booking.getStatus() != BookingStatus.CONFIRMED)
+            throw new RuntimeException("Only CONFIRMED bookings can be cancelled");
+
+        Flight flight = booking.getFlight();
+
+        flight.setAvailableSeats(flight.getAvailableSeats() + 1);
+        flightRepository.save(flight);
+
+        booking.setStatus(BookingStatus.CANCELLED);
+
+        Booking updatedBooking = bookingRepository.save(booking);
+        return BookingMapper.toDto(updatedBooking);
+    }
+
+
 }
