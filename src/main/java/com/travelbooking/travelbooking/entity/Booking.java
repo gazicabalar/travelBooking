@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.*;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.time.LocalDateTime;
 
 @Entity
@@ -35,7 +33,7 @@ public class Booking {
     private BookingStatus status;
 
     @ManyToOne
-    @JoinColumn(name = "user_id",  nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @ManyToOne
