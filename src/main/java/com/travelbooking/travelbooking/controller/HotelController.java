@@ -3,6 +3,7 @@ package com.travelbooking.travelbooking.controller;
 import com.travelbooking.travelbooking.dto.HotelRequestDto;
 import com.travelbooking.travelbooking.dto.HotelResponseDto;
 import com.travelbooking.travelbooking.service.HotelService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class HotelController {
     }
 
     @PostMapping("/createHotel")
-    public ResponseEntity<HotelResponseDto> createHotel(@RequestBody HotelRequestDto hotelRequestDto) {
+    public ResponseEntity<HotelResponseDto> createHotel(@Valid @RequestBody HotelRequestDto hotelRequestDto) {
         HotelResponseDto hotelResponseDto = hotelService.createHotel(hotelRequestDto);
         return new ResponseEntity<>(hotelResponseDto, HttpStatus.CREATED);
     }

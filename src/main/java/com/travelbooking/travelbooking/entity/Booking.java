@@ -1,8 +1,6 @@
 package com.travelbooking.travelbooking.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
 import lombok.*;
 import java.time.LocalDateTime;
 
@@ -20,12 +18,9 @@ public class Booking {
     private Long bookingId;
 
     @Column(nullable = false)
-    @NotNull(message = "Booking date cannot be null")
     private LocalDateTime bookingDate;
 
     @Column(nullable = false)
-    @NotNull
-    @Positive
     private Double totalPrice;
 
     @Enumerated(EnumType.STRING)

@@ -2,9 +2,6 @@ package com.travelbooking.travelbooking.entity;
 
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -25,17 +22,12 @@ public class User {
     private Long userId;
 
     @Column(nullable = false, unique = true)
-    @NotBlank
     private String userName;
 
     @Column(nullable = false, unique = true)
-    @NotBlank
-    @Email
     private String email;
 
     @Column(nullable = false)
-    @NotBlank
-    @Size(max = 20)
     private String password;
 
     @Column(nullable = false)
