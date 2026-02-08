@@ -3,6 +3,7 @@ package com.travelbooking.travelbooking.service;
 import com.travelbooking.travelbooking.dto.FlightRequestDto;
 import com.travelbooking.travelbooking.dto.FlightResponseDto;
 import com.travelbooking.travelbooking.entity.Flight;
+import com.travelbooking.travelbooking.exception.ResourceNotFoundException;
 import com.travelbooking.travelbooking.mapper.FlightMapper;
 import com.travelbooking.travelbooking.repository.FlightRepository;
 import org.springframework.stereotype.Service;
@@ -30,7 +31,7 @@ public class FlightServiceImpl implements FlightService{
 
     @Override
     public FlightResponseDto getById(Long flightId) {
-        Flight flight = flightRepository.findById(flightId).orElseThrow(() -> new RuntimeException("Flight not found"));
+        Flight flight = flightRepository.findById(flightId).orElseThrow(() -> new ResourceNotFoundException("Flight not found"));
         return FlightMapper.toDto(flight);
     }
 

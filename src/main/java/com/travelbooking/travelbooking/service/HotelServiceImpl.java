@@ -3,6 +3,7 @@ package com.travelbooking.travelbooking.service;
 import com.travelbooking.travelbooking.dto.HotelRequestDto;
 import com.travelbooking.travelbooking.dto.HotelResponseDto;
 import com.travelbooking.travelbooking.entity.Hotel;
+import com.travelbooking.travelbooking.exception.ResourceNotFoundException;
 import com.travelbooking.travelbooking.mapper.HotelMapper;
 import com.travelbooking.travelbooking.repository.HotelRepository;
 import org.springframework.stereotype.Service;
@@ -30,7 +31,7 @@ public class HotelServiceImpl implements HotelService{
 
     @Override
     public HotelResponseDto getById(Long hotelId) {
-        Hotel hotel = hotelRepository.findById(hotelId).orElseThrow(() -> new RuntimeException("Hotel not found"));
+        Hotel hotel = hotelRepository.findById(hotelId).orElseThrow(() -> new ResourceNotFoundException("Hotel not found"));
         return HotelMapper.toDto(hotel);
     }
 

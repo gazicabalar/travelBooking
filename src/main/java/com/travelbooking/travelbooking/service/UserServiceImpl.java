@@ -3,6 +3,7 @@ package com.travelbooking.travelbooking.service;
 import com.travelbooking.travelbooking.dto.UserRequestDto;
 import com.travelbooking.travelbooking.dto.UserResponseDto;
 import com.travelbooking.travelbooking.entity.User;
+import com.travelbooking.travelbooking.exception.ResourceNotFoundException;
 import com.travelbooking.travelbooking.mapper.UserMapper;
 import com.travelbooking.travelbooking.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public UserResponseDto getUserById(Long userId) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+        User user = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User not found"));
         return UserMapper.toDto(user);
     }
 

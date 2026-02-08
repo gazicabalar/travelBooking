@@ -3,6 +3,8 @@ package com.travelbooking.travelbooking.service;
 import com.travelbooking.travelbooking.dto.BookingRequestDto;
 import com.travelbooking.travelbooking.dto.BookingResponseDto;
 import com.travelbooking.travelbooking.entity.*;
+import com.travelbooking.travelbooking.exception.BusinessException;
+import com.travelbooking.travelbooking.exception.ResourceNotFoundException;
 import com.travelbooking.travelbooking.mapper.BookingMapper;
 import com.travelbooking.travelbooking.repository.BookingRepository;
 import com.travelbooking.travelbooking.repository.FlightRepository;
@@ -33,13 +35,13 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public BookingResponseDto createBooking(BookingRequestDto bookingRequestDto) {
         User user = userRepository.findById(bookingRequestDto.getUserId())
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
         Flight flight = flightRepository.findById(bookingRequestDto.getFlightId())
-                .orElseThrow(() -> new RuntimeException("Flight not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Flight not found"));
 
         Hotel hotel = hotelRepository.findById(bookingRequestDto.getHotelId())
-                .orElseThrow(() -> new RuntimeException("Hotel not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Hotel not found"));
 
         Double totalPrice = calculateTotalPrice(flight, hotel);
 
@@ -62,7 +64,7 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public BookingResponseDto getById(Long bookingId) {
         Booking booking = bookingRepository.findById(bookingId)
-                .orElseThrow(() -> new RuntimeException("Booking not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Booking not found"));
         return BookingMapper.toDto(booking);
     }
 
@@ -78,15 +80,15 @@ public class BookingServiceImpl implements BookingService {
     public BookingResponseDto confirmBooking(Long bookingId) {
 
         Booking booking = bookingRepository.findById(bookingId)
-                .orElseThrow(() -> new RuntimeException("Booking not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Booking not found"));
 
         if (booking.getStatus() != BookingStatus.CREATED)
-            throw new RuntimeException("Only CREATED bookings can be confirmed");
+            throw new BusinessException("Only CREATED bookings can be confirmed");
 
         Flight flight = booking.getFlight();
 
         if (flight.getAvailableSeats() <= 0) {
-            throw new RuntimeException("No available seats for this flight");
+            throw new BusinessException("No available seats for this flight");
         }
 
         flight.setAvailableSeats(flight.getAvailableSeats() - 1);
@@ -102,10 +104,10 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public BookingResponseDto cancelBooking(Long bookingId) {
         Booking booking = bookingRepository.findById(bookingId)
-                .orElseThrow(() -> new RuntimeException("Booking not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Booking not found"));
 
         if (booking.getStatus() != BookingStatus.CONFIRMED)
-            throw new RuntimeException("Only CONFIRMED bookings can be cancelled");
+            throw new BusinessException("Only CONFIRMED bookings can be cancelled");
 
         Flight flight = booking.getFlight();
 
