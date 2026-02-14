@@ -183,11 +183,18 @@
           "response": []
         },
         {
-          "name": "getAllFlights",
+          "name": "getAllHotels",
           "id": "74588587-9436-42ff-9b27-a25eccee60c8",
           "request": {
             "auth": {
-              "type": "noauth"
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbjIiLCJpYXQiOjE3NzExMDIyMzgsImV4cCI6MTc3MTE4ODYzOH0.1i3SBTtfLodnEi0hoEOnc8h7n6OxjTWokwEBJ_lWSkZdfjFWztNq2u2b2mKbzoWV",
+                  "type": "string"
+                }
+              ]
             },
             "method": "GET",
             "header": [],
@@ -388,26 +395,102 @@
         }
       ],
       "id": "d2971a50-2aff-4acb-b60c-af21461ef031"
-    }
-  ],
-  "event": [
-    {
-      "listen": "prerequest",
-      "script": {
-        "type": "text/javascript",
-        "exec": [
-          ""
-        ]
-      }
     },
     {
-      "listen": "test",
-      "script": {
-        "type": "text/javascript",
-        "exec": [
-          ""
-        ]
-      }
+      "name": "User_Operations",
+      "item": [
+        {
+          "name": "user_register",
+          "id": "ee66e0df-302c-4470-a881-d80046ddb0ba",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"username\": \"user1\",\r\n    \"password\": \"123456\",\r\n    \"email\": \"test2@gmail.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/auth/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "user_login",
+          "id": "6669df93-4826-4a02-9167-fb25118f1354",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"username\": \"user1\",\r\n    \"password\": \"123456\",\r\n    \"email\": \"test2@gmail.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "user_register_admin",
+          "id": "23497e6f-0649-4d9a-ac17-8a49680d26f9",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"username\": \"user1\",\r\n    \"password\": \"123456\",\r\n    \"email\": \"test2@gmail.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/auth/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "67181310-3dc4-46fe-b9ac-6ade6689c922"
     }
   ],
   "variable": [
