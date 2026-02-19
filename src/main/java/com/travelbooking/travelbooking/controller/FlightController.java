@@ -38,4 +38,11 @@ public class FlightController {
         return new ResponseEntity<>(flightResponseDto, HttpStatus.OK);
     }
 
+    @DeleteMapping("/delete/{flightId}")
+    public ResponseEntity<?> deleteFlight(@PathVariable Long flightId) {
+        String response = flightService.deleteFlight(flightId);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+
 }

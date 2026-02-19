@@ -104,6 +104,38 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "deleteFlight",
+          "id": "b77b1fa4-3554-4251-aff2-ef2551f83f5f",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbjIiLCJpYXQiOjE3NzE1MDE3NzYsImV4cCI6MTc3MTU4ODE3Nn0._bWk-Rus5hR2dlEU9w-TOHwpZm-8meEdnws1SQhY2y4k_tiUvAMqLPg421zEs-AN",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/flights/7",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "flights",
+                "7"
+              ]
+            }
+          },
+          "response": []
         }
       ],
       "id": "db3c3d04-6eb8-4c44-8ec2-ca66bed71aaf"

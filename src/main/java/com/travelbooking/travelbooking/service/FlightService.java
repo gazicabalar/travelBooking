@@ -10,5 +10,7 @@ public interface FlightService {
 
     FlightResponseDto getById(Long flightId);
 
+    String deleteFlight(Long flightId);
+
     List<FlightResponseDto> getAllFlights();
 }

@@ -36,6 +36,14 @@ public class FlightServiceImpl implements FlightService{
     }
 
     @Override
+    public String deleteFlight(Long flightId) {
+        Flight flight = flightRepository.findById(flightId).orElseThrow(() -> new ResourceNotFoundException("Flight not found"));
+
+        flightRepository.delete(flight);
+        return "Flight deleted successfully";
+    }
+
+    @Override
     public List<FlightResponseDto> getAllFlights() {
         return flightRepository.findAll()
                 .stream()
