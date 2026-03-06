@@ -42,4 +42,21 @@ public class HotelServiceImpl implements HotelService{
                 .map(HotelMapper::toDto)
                 .toList();
     }
+
+    @Override
+    public HotelResponseDto updateHotel(Long hotelId, HotelRequestDto hotelRequestDto) {
+        hotelRepository.findById(hotelId).orElseThrow(() -> new ResourceNotFoundException("Hotel", "hotelId", hotelId));
+        Hotel hotel = HotelMapper.toEntity(hotelRequestDto);
+        hotel.setHotelId(hotelId);
+        Hotel updatedHotel = hotelRepository.save(hotel);
+        return HotelMapper.toDto(updatedHotel);
+    }
+
+    @Override
+    public String deleteHotel(Long hotelId) {
+        Hotel hotel = hotelRepository.findById(hotelId).orElseThrow(()-> new ResourceNotFoundException("Hotel not found"));
+
+        hotelRepository.delete(hotel);
+        return "Hotel deleted successfully : " + hotelId;
+    }
 }

@@ -38,4 +38,16 @@ public class HotelController {
         return new ResponseEntity<>(hotelResponseDto, HttpStatus.OK);
     }
 
+    @PutMapping("updateHotel/{hotelId}")
+    public ResponseEntity<HotelResponseDto> updateHotel(@PathVariable Long hotelId, @RequestBody HotelRequestDto hotelRequestDto){
+        HotelResponseDto hotelResponseDto = hotelService.updateHotel(hotelId, hotelRequestDto);
+        return new ResponseEntity<>(hotelResponseDto, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("deleteHotel/{hotelId}")
+    public ResponseEntity<String> deleteHotelById(@PathVariable Long hotelId) {
+        String response = hotelService.deleteHotel(hotelId);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
 }

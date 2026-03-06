@@ -245,6 +245,90 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "updateHotel",
+          "id": "a365cc56-20ee-411c-98e7-8b56e07609b0",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbjIiLCJpYXQiOjE3NzI4MTgzNzEsImV4cCI6MTc3MjkwNDc3MX0.5fBXBtNRh9zG8B4RjgXmoK6vE9eidoqCGTk7SQ_E8JrwtdWgX1xsI3n66WXMOnd2",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"hotelName\" : \"Kaya Resort\",\r\n    \"city\" : \"KKTC\",\r\n    \"stars\" : 5,\r\n    \"pricePerNight\" : 6000\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/hotels/updateHotel/5",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "hotels",
+                "updateHotel",
+                "5"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "deleteHotel",
+          "id": "9e4ac1ca-44ce-4ebd-bdbd-156963b75273",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbjIiLCJpYXQiOjE3NzI4MTgzNzEsImV4cCI6MTc3MjkwNDc3MX0.5fBXBtNRh9zG8B4RjgXmoK6vE9eidoqCGTk7SQ_E8JrwtdWgX1xsI3n66WXMOnd2",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"hotelName\" : \"Kaya Resort\",\r\n    \"city\" : \"KKTC\",\r\n    \"stars\" : 5,\r\n    \"pricePerNight\" : 6000\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/hotels/deleteHotel/6",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "hotels",
+                "deleteHotel",
+                "6"
+              ]
+            }
+          },
+          "response": []
         }
       ],
       "id": "95cd51ff-8a13-4a6a-b0ee-5dd5ce2c09cd"

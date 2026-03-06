@@ -11,4 +11,8 @@ public interface HotelService {
     HotelResponseDto getById(Long hotelId);
 
     List<HotelResponseDto> getAllHotels();
+
+    HotelResponseDto updateHotel(Long hotelId, HotelRequestDto hotelRequestDto);
+
+    String deleteHotel(Long hotelId);
 }
