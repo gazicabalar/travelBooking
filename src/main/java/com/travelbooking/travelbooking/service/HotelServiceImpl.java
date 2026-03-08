@@ -31,7 +31,7 @@ public class HotelServiceImpl implements HotelService{
 
     @Override
     public HotelResponseDto getById(Long hotelId) {
-        Hotel hotel = hotelRepository.findById(hotelId).orElseThrow(() -> new ResourceNotFoundException("Hotel not found"));
+        Hotel hotel = hotelRepository.findById(hotelId).orElseThrow(() -> new ResourceNotFoundException("Hotel", "hotelId", hotelId));
         return HotelMapper.toDto(hotel);
     }
 
@@ -54,7 +54,7 @@ public class HotelServiceImpl implements HotelService{
 
     @Override
     public String deleteHotel(Long hotelId) {
-        Hotel hotel = hotelRepository.findById(hotelId).orElseThrow(()-> new ResourceNotFoundException("Hotel not found"));
+        Hotel hotel = hotelRepository.findById(hotelId).orElseThrow(()-> new ResourceNotFoundException("Hotel", "hotelId", hotelId));
 
         hotelRepository.delete(hotel);
         return "Hotel deleted successfully : " + hotelId;
