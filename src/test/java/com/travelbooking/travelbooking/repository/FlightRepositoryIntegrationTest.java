@@ -116,7 +116,7 @@ class FlightRepositoryIntegrationTest {
     }
 
     @Test
-    @DisplayName("Silinen uçuş artık bulunamaOK olmalı")
+    @DisplayName("Silinen uçuş artık bulunamıyor olmalı")
     void givenPersistedFlight_whenDelete_thenFlightIsRemoved() {
 
         Flight persisted = entityManager.persistAndFlush(flight1);
